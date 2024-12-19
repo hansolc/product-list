@@ -9,8 +9,11 @@ globalStyle('*', {
   boxSizing: 'border-box',
 })
 
-globalStyle('html', {})
+globalStyle('html', {
+  height: '100%',
+})
 
 globalStyle('body', {
   fontSize: vars.fontSize.base,
+  height: '100%',
 })
