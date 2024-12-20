@@ -1,6 +1,7 @@
 import '@styles/reset.css'
 import '@/styles/globalTheme.css'
 import type { Metadata } from 'next'
+import ReactQueryProvider from '@/lib/tanstack-query/client'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -14,7 +15,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ReactQueryProvider>{children}</ReactQueryProvider>
+      </body>
     </html>
   )
 }
