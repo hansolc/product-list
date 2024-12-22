@@ -6,6 +6,13 @@ const withVanillaExtract = createVanillaExtractPlugin()
 const nextConfig: NextConfig = {
   /* config options here */
   reactStrictMode: true,
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'cdn.dummyjson.com',
+      },
+    ],
+  },
 }
 
 module.exports = withVanillaExtract(nextConfig)
