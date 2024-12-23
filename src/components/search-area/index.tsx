@@ -11,7 +11,7 @@ const SearchArea = () => {
   const debouncedSearchTerm = useDebounce(searchProduct, 300)
 
   useEffect(() => {
-    handleTermChange(searchProduct)
+    handleTermChange(debouncedSearchTerm)
   }, [debouncedSearchTerm, handleTermChange])
 
   return (

@@ -8,17 +8,20 @@ const useSearchParamsByQ = () => {
   const serachParams = useSearchParams()
   const [term, setTerm] = useState(serachParams.get('q') ?? '')
 
-  const handleTermChange = useCallback((inputValue: string) => {
-    setTerm(inputValue)
+  const handleTermChange = useCallback(
+    (inputValue: string) => {
+      setTerm(inputValue)
 
-    const searchParams = new URLSearchParams(window.location.search)
-    if (inputValue) {
-      searchParams.set('q', inputValue)
-    } else {
-      searchParams.delete('q')
-    }
-    router.push(`?${searchParams.toString()}`)
-  }, [])
+      const searchParams = new URLSearchParams(window.location.search)
+      if (inputValue) {
+        searchParams.set('q', inputValue)
+      } else {
+        searchParams.delete('q')
+      }
+      router.push(`?${searchParams.toString()}`)
+    },
+    [router]
+  )
 
   return {
     term,
