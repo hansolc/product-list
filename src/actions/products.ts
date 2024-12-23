@@ -2,11 +2,17 @@ import axios from 'axios'
 import { ActionResult } from '@/types/actions'
 import { ProductsResponse, productsResponseSchema } from '@/schema/products'
 
-export const getProducts = async (): Promise<
-  ActionResult<ProductsResponse>
-> => {
+export const getProducts = async ({
+  q,
+}: {
+  q: string
+}): Promise<ActionResult<ProductsResponse>> => {
   try {
-    const response = await axios.get(`/api/product`)
+    const response = await axios.get(`/api/product`, {
+      params: {
+        q,
+      },
+    })
     const { success, data } = productsResponseSchema.safeParse(response.data)
 
     if (success) {

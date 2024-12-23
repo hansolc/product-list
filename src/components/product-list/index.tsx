@@ -7,7 +7,7 @@ import Card from './components/Card'
 
 const ProductList = () => {
   const { data, isLoading, isError } = useProducts()
-  console.log(data)
+  // console.log(data)
   if (!data || isLoading) return <div>... is loading</div>
   if (isError) return <div>something went wrong</div>
 
