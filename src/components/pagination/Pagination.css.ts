@@ -7,7 +7,7 @@ export const container = style([
     alignItems: 'center',
     justifyContent: 'center',
     padding: '50px',
-    gap: '10px',
+    gap: '15px',
   },
 ])
 
@@ -15,4 +15,5 @@ export const indexBox = style({
   border: '1px solid black',
   padding: '10px',
   cursor: 'pointer',
+  borderRadius: '5px',
 })

@@ -1,10 +1,19 @@
 'use client'
 
-import React, { PropsWithChildren } from 'react'
+import React from 'react'
 import useProducts from './hooks/use-proudcts'
 import GridContainer from '../grid-container'
 import Card from './components/Card'
 import Pagination from '../pagination'
+import { ProductPaginationProvider } from './context'
+
+const ProductListContainer = () => {
+  return (
+    <ProductPaginationProvider>
+      <ProductList />
+    </ProductPaginationProvider>
+  )
+}
 
 const ProductList = () => {
   const { data, isLoading, isError } = useProducts()
@@ -32,4 +41,4 @@ const ProductList = () => {
   )
 }
 
-export default ProductList
+export default ProductListContainer
