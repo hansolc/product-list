@@ -11,6 +11,8 @@ const useProducts = () => {
 
   const props = {
     q: searchParams.get('q') ?? '',
+    skip: 0,
+    limit: 28,
   }
   // console.log(props)
 

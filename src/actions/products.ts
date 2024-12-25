@@ -2,15 +2,23 @@ import axios from 'axios'
 import { ActionResult } from '@/types/actions'
 import { ProductsResponse, productsResponseSchema } from '@/schema/products'
 
+interface GetProductsProps {
+  q: string
+  limit: number
+  skip: number
+}
+
 export const getProducts = async ({
   q,
-}: {
-  q: string
-}): Promise<ActionResult<ProductsResponse>> => {
+  limit,
+  skip,
+}: GetProductsProps): Promise<ActionResult<ProductsResponse>> => {
   try {
     const response = await axios.get(`/api/product`, {
       params: {
         q,
+        limit,
+        skip,
       },
     })
     const { success, data } = productsResponseSchema.safeParse(response.data)

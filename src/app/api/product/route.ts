@@ -8,7 +8,14 @@ export async function GET(req: NextRequest) {
     const baseUrl = paramsValue
       ? `https://dummyjson.com/products/search?q=${paramsValue}`
       : `https://dummyjson.com/products`
-    const response = await axios.get(baseUrl)
+    const url = new URL(baseUrl)
+    if (searchParams.has('limit')) {
+      url.searchParams.append('limit', searchParams.get('limit')!)
+    }
+    if (searchParams.has('skip')) {
+      url.searchParams.append('skip', searchParams.get('skip')!)
+    }
+    const response = await axios.get(url.toString())
     // throw new Error('')
     return NextResponse.json(response.data)
   } catch (error) {
