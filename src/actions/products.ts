@@ -1,12 +1,7 @@
 import axios from 'axios'
 import { ActionResult } from '@/types/actions'
 import { ProductsResponse, productsResponseSchema } from '@/schema/products'
-
-interface GetProductsProps {
-  q: string
-  limit: number
-  skip: number
-}
+import { GetProductsProps } from '@/types/products'
 
 export const getProducts = async ({
   q,

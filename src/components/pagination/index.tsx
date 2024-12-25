@@ -2,10 +2,7 @@ import { PAGE_PER_PRODUCTS } from '@/constant/products'
 import React, { HTMLAttributes, PropsWithChildren } from 'react'
 import { container, indexBox } from './Pagination.css'
 import { useProductPaginationContext } from '../product-list/context'
-
-interface PaginationProps {
-  total: number
-}
+import { PaginationProps } from '@/types/products'
 
 const Pagination = ({ total }: PaginationProps) => {
   const { setPage } = useProductPaginationContext()

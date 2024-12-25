@@ -1,3 +1,4 @@
+import { ProductPaginationContextProps } from '@/types/products'
 import {
   createContext,
   Dispatch,
@@ -6,11 +7,6 @@ import {
   useContext,
   useState,
 } from 'react'
-
-interface ProductPaginationContextProps {
-  page: number
-  setPage: Dispatch<SetStateAction<number>>
-}
 
 const ProductPaginationContext =
   createContext<ProductPaginationContextProps | null>(null)
