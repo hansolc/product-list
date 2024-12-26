@@ -5,14 +5,9 @@ import useProducts from './hooks/use-proudcts'
 import GridContainer from '../grid-container'
 import Card from './components/Card'
 import Pagination from '../pagination'
-import { ProductPaginationProvider } from './context'
 
 const ProductListContainer = () => {
-  return (
-    <ProductPaginationProvider>
-      <ProductList />
-    </ProductPaginationProvider>
-  )
+  return <ProductList />
 }
 
 const ProductList = () => {
