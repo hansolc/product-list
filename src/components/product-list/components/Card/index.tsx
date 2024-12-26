@@ -22,7 +22,12 @@ const Card = ({
   return (
     <div className={card}>
       <div className={imageWrapper}>
-        <Image src={imageSrc} alt={'tumbnail'} width={300} height={300} />
+        <Image
+          src={imageSrc}
+          alt={'tumbnail'}
+          layout="fill"
+          objectFit="contain"
+        />
       </div>
       <div className={cardTitle}>{title}</div>
       <div className={cardPrice}>$ {price}</div>

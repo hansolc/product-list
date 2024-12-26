@@ -8,14 +8,12 @@ export const card = style([
   },
 ])
 
-export const imageWrapper = style([
-  flex,
-  {
-    borderRadius: '8px',
-    backgroundColor: 'gray',
-    justifyContent: 'center',
-  },
-])
+export const imageWrapper = style({
+  position: 'relative',
+  width: '100%',
+  aspectRatio: '16 / 9',
+  overflow: 'hidden',
+})
 
 export const cardTitle = style([
   lineClampByNumber(1),

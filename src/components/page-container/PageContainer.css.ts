@@ -11,10 +11,11 @@ export const container = style([
     padding: '50px 0',
     '@media': {
       [vars.media.tablet]: {
-        padding: '50px 50px',
+        padding: '50px 5%',
       },
       [vars.media.mobile]: {
-        padding: '50px 50px',
+        padding: '50px 5%',
+        maxWidth: '100%',
       },
     },
   },

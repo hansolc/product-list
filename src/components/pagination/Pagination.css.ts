@@ -4,10 +4,12 @@ import { style } from '@vanilla-extract/css'
 export const container = style([
   flex,
   {
+    width: '100%',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '50px',
+    padding: '50px 0',
     gap: '15px',
+    flexWrap: 'wrap',
   },
 ])
 
