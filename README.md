@@ -48,6 +48,34 @@ src/
 
 **types** - 프로젝트 전반에 사용되는 타입 정의
 
+## 주요기능
+
+### 1. css Grid을 사용한 반응형 웹
+
+컴포넌트 `GridContainer`을 통해 브라우저 크기마다 다른 개수를 배치하여 반응형 웹으로 구현하도록 구현했습니다.
+
+### 2. tanstackquery을 사용하여 상품 정보 가져오는 과정
+
+**1. ProductList 컴포넌트의 데이터 요청**
+
+- ProductList 컴포넌트가 마운트될 때, 내부에서 useProducts 커스텀 훅을 호출하여 상품 정보를 가져옵니다.
+- useProducts 훅은 검색어(q)를 URL에서 추출하고, 페이지네이션을 위해 useProductPaginationContext에서 page 값을 받아 API 요청 파라미터를 구성합니다.
+- 이 구조 덕분에 새로고침해도 URL에 포함된 검색어와 페이지 정보가 유지되어 동일한 상태를 복원할 수 있습니다.
+
+**2. getProducts 함수로 API 호출**
+
+- useProducts 훅 내부에서 getProducts 함수를 호출하여 데이터를 요청합니다.
+- 이 함수는 Next.js API Routes를 통해 내부 서버(/api/product)로 요청을 보냅니다.
+
+**3. API Routes에서 외부 서버로 데이터 요청**
+
+- 내부 서버의 GET 메서드는 외부 서버(https://dummyjson.com/products)로 요청을 전달하며, URL에 포함된 검색어, 페이지네이션 정보(limit, skip)에 따라 적절한 데이터를 가져옵니다.
+
+**4. 외부 서버로부터 응답 처리**
+
+- 외부 서버로부터 데이터를 성공적으로 수신하면, zod 라이브러리를 사용해 데이터의 타입을 검증합니다.
+- 타입 검증에 실패할 경우 에러 메시지를 반환하고, 성공 시 데이터를 useQuery를 통해 React 컴포넌트에서 사용할 수 있게 합니다.
+
 ## External APIs
 
 This project uses the dummyjson API for generating dummy data.

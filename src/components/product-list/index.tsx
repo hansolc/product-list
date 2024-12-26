@@ -11,10 +11,10 @@ const ProductListContainer = () => {
 }
 
 const ProductList = () => {
-  const { data, isLoading, isError } = useProducts()
+  const { data, isLoading, isError, error } = useProducts()
   // console.log(data)
   if (!data || isLoading) return <div>... is loading</div>
-  if (isError) return <div>something went wrong</div>
+  if (isError) return <div>{error.message}</div>
 
   return (
     <>
