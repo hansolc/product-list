@@ -78,6 +78,10 @@ src/
 - 외부 서버로부터 데이터를 성공적으로 수신하면, zod 라이브러리를 사용해 데이터의 타입을 검증합니다.
 - 타입 검증에 실패할 경우 에러 메시지를 반환하고, 성공 시 데이터를 useQuery를 통해 React 컴포넌트에서 사용할 수 있게 합니다.
 
+## 개선사항 & 추가 기능 구현
+
+[velog blog](https://velog.io/@soll/%EB%AA%A8%EB%B0%94%EC%9D%BC-%EC%B9%9C%ED%99%94%EC%A0%81-%ED%99%94%EB%A9%B4-%EC%88%98%EC%A0%95)
+
 ## External APIs
 
 This project uses the dummyjson API for generating dummy data.
