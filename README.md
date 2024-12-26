@@ -2,6 +2,8 @@
 
 프로젝트 수행기간: 2024-12-18 ~ 2024-12-25
 
+배포 페이지: https://product-list-three-tau.vercel.app/
+
 ## 사용기술
 
 - Next.js 15
