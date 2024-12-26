@@ -1,8 +1,8 @@
-import { flex } from '@/styles/utils.css'
+import { columnFlex, flex } from '@/styles/utils.css'
 import { style } from '@vanilla-extract/css'
 
 export const container = style([
-  flex,
+  columnFlex,
   {
     border: `1px solid black`,
     padding: '12px',
