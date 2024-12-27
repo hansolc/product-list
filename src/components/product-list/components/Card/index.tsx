@@ -5,6 +5,7 @@ import {
   cardTitle,
   cardPrice,
   cardDescription,
+  image,
 } from './Card.css'
 import Image from 'next/image'
 
@@ -25,8 +26,9 @@ const Card = ({
         <Image
           src={imageSrc}
           alt={'tumbnail'}
-          layout="fill"
-          objectFit="contain"
+          fill
+          className={image}
+          sizes="(max-width: 1280px) 100vw, 50vw"
         />
       </div>
       <div className={cardTitle}>{title}</div>
