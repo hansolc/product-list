@@ -15,6 +15,10 @@ export const imageWrapper = style({
   overflow: 'hidden',
 })
 
+export const image = style({
+  objectFit: 'contain',
+})
+
 export const cardTitle = style([
   lineClampByNumber(1),
   {

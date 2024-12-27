@@ -1,19 +1,23 @@
-import { PAGE_PER_PRODUCTS } from '@/constant/products'
+import { PAGE_PER_PRODUCTS, PAGINATION_SIZE } from '@/constant/products'
 import React, { HTMLAttributes, PropsWithChildren } from 'react'
 import { container, indexBox } from './Pagination.css'
 import { useProductPaginationContext } from '../product-list/context'
 import { PaginationProps } from '@/types/products'
+import { getVisiblePaginationArray } from '@/lib/utils/products'
 
 const Pagination = ({ total }: PaginationProps) => {
-  const { setPage } = useProductPaginationContext()
+  const { setPage, page } = useProductPaginationContext()
   const pages = Math.floor(total / PAGE_PER_PRODUCTS) + 1
-  const idxArray = Array.from({ length: pages }, (_, idx) => idx + 1)
 
   return (
     <div className={container}>
-      {idxArray.map((idx) => {
+      {getVisiblePaginationArray(pages, page).map((idx) => {
         return (
-          <IndexBox key={`pagination_idx_${idx}`} onClick={() => setPage(idx)}>
+          <IndexBox
+            key={`pagination_idx_${idx}`}
+            onClick={() => setPage(idx)}
+            isActive={page === idx}
+          >
             {idx}
           </IndexBox>
         )
@@ -25,9 +29,14 @@ const Pagination = ({ total }: PaginationProps) => {
 const IndexBox = ({
   children,
   onClick,
-}: PropsWithChildren & HTMLAttributes<HTMLDivElement>) => {
+  isActive,
+}: PropsWithChildren &
+  HTMLAttributes<HTMLDivElement> & { isActive: boolean }) => {
   return (
-    <div className={indexBox} onClick={onClick}>
+    <div
+      className={isActive ? indexBox.active : indexBox.default}
+      onClick={onClick}
+    >
       {children}
     </div>
   )
