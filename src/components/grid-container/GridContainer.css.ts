@@ -1,20 +1,32 @@
 import { vars } from '@/styles/globalTheme.css'
-import { style } from '@vanilla-extract/css'
+import { createVar, style } from '@vanilla-extract/css'
+
+export const gridVar = {
+  columns: {
+    desktop: createVar(),
+    tablet: createVar(),
+    mobile: createVar(),
+  },
+  gap: {
+    row: createVar(),
+    col: createVar(),
+  },
+}
 
 export const container = style({
   display: 'grid',
-  columnGap: '20px',
-  rowGap: '40px',
+  columnGap: `${gridVar.gap.col}`,
+  rowGap: `${gridVar.gap.row}`,
   paddingTop: '50px',
   '@media': {
     [vars.media.desktop]: {
-      gridTemplateColumns: 'repeat(4, minmax(300px, auto))',
+      gridTemplateColumns: `repeat(${gridVar.columns.desktop}, minmax(auto, auto))`,
     },
     [vars.media.tablet]: {
-      gridTemplateColumns: 'repeat(2, minmax(300px, auto))',
+      gridTemplateColumns: `repeat(${gridVar.columns.tablet}, minmax(300px, auto))`,
     },
     [vars.media.mobile]: {
-      gridTemplateColumns: 'repeat(1,minmax(auto, auto))',
+      gridTemplateColumns: `repeat(${gridVar.columns.mobile}, minmax(300px, auto))`,
     },
   },
 })

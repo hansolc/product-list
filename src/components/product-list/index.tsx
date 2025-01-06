@@ -5,6 +5,7 @@ import useProducts from './hooks/use-proudcts'
 import GridContainer from '../grid-container'
 import Card from './components/Card'
 import Pagination from '../pagination'
+import DraggableGridContainer from '../grid-container/DraggableGridContainer'
 
 const ProductListContainer = () => {
   return <ProductList />
@@ -18,7 +19,10 @@ const ProductList = () => {
 
   return (
     <>
-      <GridContainer>
+      <DraggableGridContainer
+        column={{ desktop: 4, tablet: 2, mobile: 1 }}
+        gap={{ col: 40, row: 40 }}
+      >
         {data.products.map((d, idx) => {
           return (
             <Card
@@ -30,7 +34,7 @@ const ProductList = () => {
             />
           )
         })}
-      </GridContainer>
+      </DraggableGridContainer>
       <Pagination total={data.total} />
     </>
   )
