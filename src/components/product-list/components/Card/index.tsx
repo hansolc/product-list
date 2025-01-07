@@ -8,7 +8,6 @@ import {
   image,
 } from './Card.css'
 import Image from 'next/image'
-import Draggable from '@/components/draggable'
 
 const Card = ({
   imageSrc,
@@ -22,22 +21,20 @@ const Card = ({
   description: string
 }) => {
   return (
-    <Draggable>
-      <div className={card}>
-        <div className={imageWrapper}>
-          <Image
-            src={imageSrc}
-            alt={'tumbnail'}
-            fill
-            className={image}
-            sizes="(max-width: 1280px) 100vw, 50vw"
-          />
-        </div>
-        <div className={cardTitle}>{title}</div>
-        <div className={cardPrice}>$ {price}</div>
-        <div className={cardDescription}>{description}</div>
+    <div className={card}>
+      <div className={imageWrapper}>
+        <Image
+          src={imageSrc}
+          alt={'tumbnail'}
+          fill
+          className={image}
+          sizes="(max-width: 1280px) 100vw, 50vw"
+        />
       </div>
-    </Draggable>
+      <div className={cardTitle}>{title}</div>
+      <div className={cardPrice}>$ {price}</div>
+      <div className={cardDescription}>{description}</div>
+    </div>
   )
 }
 
