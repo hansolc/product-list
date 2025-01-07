@@ -18,7 +18,10 @@ const ProductList = () => {
 
   return (
     <>
-      <GridContainer>
+      <GridContainer
+        column={{ desktop: 4, tablet: 2, mobile: 1 }}
+        gap={{ col: 40, row: 40 }}
+      >
         {data.products.map((d, idx) => {
           return (
             <Card
