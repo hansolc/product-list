@@ -1,6 +1,4 @@
 import { style } from '@vanilla-extract/css'
-import { vars } from './globalTheme.css'
-import { GridColumnProps } from '@/types/grid'
 
 // flexbox
 
