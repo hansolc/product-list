@@ -12,6 +12,7 @@ export default function SignupPage() {
 
   const onLogin = async () => {
     try {
+      console.log('check')
       const response = await axios.post('/api/users/login', user)
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
