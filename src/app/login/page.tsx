@@ -1,47 +1,17 @@
 'use client'
-import Link from 'next/link'
-import React, { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import axios from 'axios'
+import React from 'react'
+import useUser from '../hooks/useUser'
+import UserInputForm from '@/components/user/UserInputForm'
 
-export default function SignupPage() {
-  const [user, setUser] = React.useState({
-    email: '',
-    password: '',
-  })
-
-  const onLogin = async () => {
-    try {
-      console.log('check')
-      const response = await axios.post('/api/users/login', user)
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      console.log('Login failed', error.message)
-    } finally {
-    }
-  }
+const LoginPage = () => {
+  const { user, setUser, login } = useUser()
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <hr />
-
-      <label htmlFor="email">email</label>
-      <input
-        id="email"
-        type="text"
-        value={user.email}
-        onChange={(e) => setUser({ ...user, email: e.target.value })}
-        placeholder="email"
-      />
-      <label htmlFor="password">password</label>
-      <input
-        id="password"
-        type="password"
-        value={user.password}
-        onChange={(e) => setUser({ ...user, password: e.target.value })}
-        placeholder="password"
-      />
-      <button onClick={onLogin}>login</button>
+    <div>
+      <UserInputForm user={user} setUser={setUser} />
+      <button onClick={login}>login</button>
     </div>
   )
 }
+
+export default LoginPage

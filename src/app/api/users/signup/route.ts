@@ -2,21 +2,17 @@ import { connect } from '@/dbConfig/dbConfig'
 import User from '@/models/userModel'
 import { NextRequest, NextResponse } from 'next/server'
 import bcryptjs from 'bcryptjs'
+import { UserProps } from '@/types/user'
 
 connect()
-// Calls the connect function to establish a connection to the database.
 
 export async function POST(request: NextRequest) {
-  // Defines an asynchronous POST request handler.
   try {
-    const reqBody = await request.json()
-    const { username, email, password } = reqBody
-    // Parses the request body to extract username, email, and password.
+    const reqBody: UserProps = await request.json()
+    const { username, password } = reqBody
 
-    //Checks if a user with the provided email already exists.
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ username })
 
-    //If yes, returns a 400 response.
     if (user) {
       return NextResponse.json(
         { error: 'User already exists' },
@@ -30,7 +26,6 @@ export async function POST(request: NextRequest) {
 
     const newUser = new User({
       username,
-      email,
       password: hashedPassword,
     })
 

@@ -3,17 +3,16 @@ import User from '@/models/userModel'
 import { NextRequest, NextResponse } from 'next/server'
 import bcryptjs from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { UserProps } from '@/types/user'
 
 connect()
-// Calls the connect function to establish a connection to the database.
-
 export async function POST(request: NextRequest) {
   try {
-    const reqBody = await request.json()
-    const { email, password } = reqBody
+    const reqBody: UserProps = await request.json()
+    const { username, password } = reqBody
 
     //check if user exists
-    const user = await User.findOne({ email })
+    const user = await User.findOne({ username })
 
     if (!user) {
       return NextResponse.json(
@@ -22,27 +21,24 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    //check if password is correct
     const validPassword = await bcryptjs.compare(password, user.password)
     if (!validPassword) {
       return NextResponse.json({ error: 'Invlid password' }, { status: 400 })
     }
 
-    //create token data
-    // A JavaScript object (tokenData) is created to store essential user
-    // information. In this case, it includes the user's unique identifier (id),
-    // username, and email.
-
     const tokenData = {
       id: user._id,
       username: user.username,
-      email: user.email,
     }
 
     // Create a token with expiration of 1 day
-    const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET!, {
-      expiresIn: '1d',
-    })
+    const token = jwt.sign(
+      tokenData,
+      process.env.JWT_SECRET || 'default_secret',
+      {
+        expiresIn: '1d',
+      }
+    )
 
     // Create a JSON response indicating successful login
     const response = NextResponse.json({
