@@ -4,6 +4,7 @@ import useUser from '../hooks/useUser'
 import UserInputForm from '@/components/user/UserInputForm'
 import PageContainer from '@/components/page-container'
 import { container } from './page.css'
+import Button from '@/components/button/Button'
 
 const LoginPage = () => {
   const { user, setUser, login } = useUser()
@@ -13,7 +14,7 @@ const LoginPage = () => {
       <div className={container}>
         <h1>Log in</h1>
         <UserInputForm user={user} setUser={setUser} />
-        <button onClick={login}>login</button>
+        <Button onClick={login}>login</Button>
       </div>
     </PageContainer>
   )
