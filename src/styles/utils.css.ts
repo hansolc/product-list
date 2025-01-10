@@ -22,3 +22,10 @@ export const lineClampByNumber = (line: number) =>
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   })
+
+export const containerByMaxWidth = (width: number) =>
+  style({
+    width: '100%',
+    maxWidth: `${width}px`,
+    margin: '0 auto',
+  })
