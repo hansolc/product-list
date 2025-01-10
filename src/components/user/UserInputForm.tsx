@@ -1,5 +1,6 @@
 import { UserProps } from '@/types/user'
 import React from 'react'
+import Input from '../input/Input'
 
 interface UserInputFormProps {
   user: UserProps
@@ -10,7 +11,7 @@ const UserInputForm = ({ user, setUser }: UserInputFormProps) => {
   return (
     <>
       <label htmlFor="username">username</label>
-      <input
+      <Input
         id="username"
         type="text"
         value={user.username}
@@ -18,7 +19,7 @@ const UserInputForm = ({ user, setUser }: UserInputFormProps) => {
         placeholder="username"
       />
       <label htmlFor="password">password</label>
-      <input
+      <Input
         id="password"
         type="password"
         value={user.password}

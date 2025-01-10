@@ -1,4 +1,29 @@
 import { style } from '@vanilla-extract/css'
+import { vars } from './globalTheme.css'
+
+// reusable func
+export const responsiveStyle = (
+  property: string,
+  values: {
+    mobile?: string | number
+    tablet?: string | number
+    desktop?: string | number
+  }
+) =>
+  style({
+    [property]: values.mobile,
+    '@media': {
+      ...(values.mobile && {
+        [vars.media.mobile]: { [property]: values.mobile },
+      }),
+      ...(values.tablet && {
+        [vars.media.tablet]: { [property]: values.tablet },
+      }),
+      ...(values.desktop && {
+        [vars.media.desktop]: { [property]: values.desktop },
+      }),
+    },
+  })
 
 // flexbox
 
