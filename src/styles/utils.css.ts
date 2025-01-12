@@ -38,6 +38,13 @@ export const columnFlex = style([
   },
 ])
 
+export const errorMessage = style({
+  color: 'red',
+  fontStyle: 'italic',
+  fontSize: '0.875rem',
+  fontWeight: 'lighter',
+})
+
 // lineclamp
 export const lineClampByNumber = (line: number) =>
   style({

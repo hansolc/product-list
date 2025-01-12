@@ -1,3 +1,5 @@
+import { errorMessage } from '@/styles/utils.css'
+import { style } from '@vanilla-extract/css'
 import { recipe } from '@vanilla-extract/recipes'
 
 export const input = recipe({
@@ -51,3 +53,5 @@ export const input = recipe({
 
   //   ],
 })
+
+export const msg = style([errorMessage, { paddingTop: '0.5rem' }])
