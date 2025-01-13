@@ -14,3 +14,9 @@ export const container = style([
 ])
 
 export const msg = style([errorMessage])
+
+export const createAccount = style({
+  color: 'blue',
+  fontStyle: 'italic',
+  textAlign: 'right',
+})

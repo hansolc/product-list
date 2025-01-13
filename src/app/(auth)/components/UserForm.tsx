@@ -1,13 +1,14 @@
 'use client'
 
 import React, { FormEvent, useState } from 'react'
-import { container, msg } from './UserForm.css'
+import { container, createAccount, msg } from './UserForm.css'
 import Button from '@/components/button/Button'
 import Form from '@/components/form/Form'
 import { UserProps } from '@/types/user'
 import useLogin from '../hooks/useLogin'
 import useSignup from '../hooks/useSignup'
 import { isPasswordValid, isUsernameValid } from '@/lib/utils/auth'
+import Link from 'next/link'
 
 interface UserFormProps {
   type: 'login' | 'signup'
@@ -49,7 +50,10 @@ const UserForm = ({ type }: UserFormProps) => {
         onChange={(e) => setUser({ ...user, username: e.target.value })}
         value={username}
         isValid={isUsernameValid(username)}
-        invalidMsg={'숫자, 소문자 영문으로 4~8자리로 입력해주세요'}
+        invalidMsg={
+          'Please enter 4 to 8 characters using numbers and lowercase English letters.'
+        }
+        color={!isUsernameValid(username) ? 'error' : 'default'}
       />
       <Form.Input
         label="password"
@@ -57,13 +61,21 @@ const UserForm = ({ type }: UserFormProps) => {
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         value={password}
         isValid={isPasswordValid(password)}
-        invalidMsg={'숫자, 소/대문자 영문으로 8~20자리로 입력해주세요'}
+        invalidMsg={
+          'Please enter 8 to 20 characters using numbers and English letters (both uppercase and lowercase).'
+        }
+        color={!isPasswordValid(password) ? 'error' : 'default'}
       />
       <Button>{`${isLogin ? 'Log in' : 'Sign up'}`}</Button>
       {(isLoginError || isSignupError) && (
         <p className={msg}>
           {`Please try again - ${loginErrorMsg || signupErrorMsg}`}
         </p>
+      )}
+      {isLogin && (
+        <Link href={'/signup'} className={createAccount}>
+          Create account
+        </Link>
       )}
     </Form>
   )
