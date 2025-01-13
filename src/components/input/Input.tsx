@@ -6,22 +6,23 @@ export interface InputProps
   size?: 'small' | 'medium' | 'large'
   color?: 'default' | 'primary' | 'error' | 'success'
   rounded?: boolean
-  isValid?: boolean
-  invalidMsg?: string
+  isValid?: {
+    condition: boolean
+    msg: string
+  }
 }
 
 const Input = ({
   size = 'medium',
   color = 'default',
   rounded = false,
-  isValid = true,
-  invalidMsg = '',
+  isValid,
   ...rest
 }: InputProps) => {
   return (
     <>
       <input className={input({ size, color, rounded })} {...rest} />
-      {!isValid && <p className={msg}>{invalidMsg}</p>}
+      {isValid?.condition && <p className={msg}>{isValid.msg}</p>}
     </>
   )
 }

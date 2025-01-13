@@ -30,6 +30,11 @@ const UserForm = ({ type }: UserFormProps) => {
   } = useSignup(user)
   const { username, password } = user
   const isLogin = type === 'login'
+  const submitCondition =
+    username !== '' &&
+    password !== '' &&
+    isUsernameValid(username) &&
+    isPasswordValid(password)
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -49,10 +54,10 @@ const UserForm = ({ type }: UserFormProps) => {
         type="text"
         onChange={(e) => setUser({ ...user, username: e.target.value })}
         value={username}
-        isValid={isUsernameValid(username)}
-        invalidMsg={
-          'Please enter 4 to 8 characters using numbers and lowercase English letters.'
-        }
+        isValid={{
+          condition: !isUsernameValid(username),
+          msg: 'Please enter 4 to 8 characters using numbers and lowercase English letters.',
+        }}
         color={!isUsernameValid(username) ? 'error' : 'default'}
       />
       <Form.Input
@@ -60,13 +65,15 @@ const UserForm = ({ type }: UserFormProps) => {
         type="password"
         onChange={(e) => setUser({ ...user, password: e.target.value })}
         value={password}
-        isValid={isPasswordValid(password)}
-        invalidMsg={
-          'Please enter 8 to 20 characters using numbers and English letters (both uppercase and lowercase).'
-        }
+        isValid={{
+          condition: !isPasswordValid(password),
+          msg: 'Please enter 8 to 20 characters using numbers and English letters (both uppercase and lowercase).',
+        }}
         color={!isPasswordValid(password) ? 'error' : 'default'}
       />
-      <Button>{`${isLogin ? 'Log in' : 'Sign up'}`}</Button>
+      <Button
+        disabled={!submitCondition}
+      >{`${isLogin ? 'Log in' : 'Sign up'}`}</Button>
       {(isLoginError || isSignupError) && (
         <p className={msg}>
           {`Please try again - ${loginErrorMsg || signupErrorMsg}`}

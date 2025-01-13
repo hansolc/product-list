@@ -1,7 +1,11 @@
-import React, { HTMLAttributes, PropsWithChildren } from 'react'
+import React, {
+  ButtonHTMLAttributes,
+  HTMLAttributes,
+  PropsWithChildren,
+} from 'react'
 import { button } from './Button.css'
 
-interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   color?: 'primary' | 'secondary' | 'success' | 'warning' | 'danger'
   size?: 'small' | 'medium' | 'large'
   rounded?: boolean
