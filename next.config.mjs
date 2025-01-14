@@ -1,9 +1,8 @@
-import type { NextConfig } from 'next'
 import { createVanillaExtractPlugin } from '@vanilla-extract/next-plugin'
 
 const withVanillaExtract = createVanillaExtractPlugin()
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   /* config options here */
   reactStrictMode: true,
   images: {
@@ -15,4 +14,4 @@ const nextConfig: NextConfig = {
   },
 }
 
-module.exports = withVanillaExtract(nextConfig)
+export default withVanillaExtract(nextConfig)
