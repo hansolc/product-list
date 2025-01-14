@@ -61,3 +61,20 @@ export const containerByMaxWidth = (width: number) =>
     maxWidth: `${width}px`,
     margin: '0 auto',
   })
+
+// responsive container
+export const responsiveContainer = style({
+  maxWidth: '1280px',
+  width: '100%',
+  margin: '0 auto',
+  padding: '80px 0',
+  '@media': {
+    [vars.media.tablet]: {
+      padding: '80px 5%',
+    },
+    [vars.media.mobile]: {
+      padding: '80px 5%',
+      maxWidth: '100%',
+    },
+  },
+})

@@ -2,6 +2,7 @@ import axios from 'axios'
 import { ActionResult } from '@/types/actions'
 import { ProductsResponse, productsResponseSchema } from '@/schema/products'
 import { GetProductsProps } from '@/types/products'
+import { handleError } from '@/lib/utils/error'
 
 export const getProducts = async ({
   q,
@@ -30,16 +31,6 @@ export const getProducts = async ({
       }
     }
   } catch (error) {
-    if (error instanceof Error) {
-      return {
-        status: 'error',
-        error: error.message,
-      }
-    } else {
-      return {
-        status: 'error',
-        error: '알 수 없는 오류가 발생했습니다',
-      }
-    }
+    return handleError(error)
   }
 }

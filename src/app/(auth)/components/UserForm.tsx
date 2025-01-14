@@ -9,7 +9,6 @@ import useLogin from '../hooks/useLogin'
 import useSignup from '../hooks/useSignup'
 import { isPasswordValid, isUsernameValid } from '@/lib/utils/auth'
 import Link from 'next/link'
-import { useRecoilValue } from 'recoil'
 
 interface UserFormProps {
   type: 'login' | 'signup'
