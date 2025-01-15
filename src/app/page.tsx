@@ -8,13 +8,13 @@ import { Suspense } from 'react'
 
 export default function Home() {
   return (
-    <Suspense>
-      <PageContainer>
+    <PageContainer>
+      <Suspense>
         <ProductPaginationProvider>
           <SearchArea />
           <ProductList />
         </ProductPaginationProvider>
-      </PageContainer>
-    </Suspense>
+      </Suspense>
+    </PageContainer>
   )
 }

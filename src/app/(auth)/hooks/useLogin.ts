@@ -1,11 +1,14 @@
+import { userState } from '@/recoil/userAtom'
 import { UserProps } from '@/types/user'
 import { useMutation } from '@tanstack/react-query'
-import axios, { AxiosError } from 'axios'
+import axios, { AxiosError, AxiosResponse } from 'axios'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { useSetRecoilState } from 'recoil'
 
 const useLogin = ({ username, password }: UserProps) => {
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const setUserState = useSetRecoilState(userState)
   const router = useRouter()
 
   const mutation = useMutation({
@@ -20,8 +23,9 @@ const useLogin = ({ username, password }: UserProps) => {
         setErrorMessage('An unknown error occurred')
       }
     },
-    onSuccess: () => {
+    onSuccess: (axiosResponse: AxiosResponse) => {
       setErrorMessage(null)
+      setUserState(axiosResponse.data.userInfo)
       router.push('/')
     },
   })

@@ -16,8 +16,6 @@ interface UserFormProps {
 
 const UserForm = ({ type }: UserFormProps) => {
   const [user, setUser] = useState<UserProps>({ username: '', password: '' })
-  // error을 그대로 return 한다면 Axios Error가 return 되기 때문에
-  // useLogin 훅 내부에서 string 형태로 처리 후 반환
   const {
     errorMessage: loginErrorMsg,
     mutate: login,

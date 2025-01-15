@@ -1,18 +1,23 @@
 'use client'
 
-import React from 'react'
+import React, { Suspense } from 'react'
 import useProducts from './hooks/use-proudcts'
 import GridContainer from '../grid-container'
 import Card from './components/Card'
 import Pagination from '../pagination'
+import { useRecoilValue } from 'recoil'
+import { userState } from '@/recoil/userAtom'
 
 const ProductListContainer = () => {
-  return <ProductList />
+  return (
+    <Suspense>
+      <ProductList />
+    </Suspense>
+  )
 }
 
 const ProductList = () => {
   const { data, isLoading, isError, error } = useProducts()
-  // console.log(data)
   if (!data || isLoading) return <div>... is loading</div>
   if (isError) return <div>{error.message}</div>
 
