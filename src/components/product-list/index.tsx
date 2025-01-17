@@ -7,6 +7,7 @@ import Card from './components/Card'
 import Pagination from '../pagination'
 import { useRecoilValue } from 'recoil'
 import { userState } from '@/recoil/userAtom'
+import Loader from '../loader/Loader'
 
 const ProductListContainer = () => {
   return (
@@ -18,7 +19,7 @@ const ProductListContainer = () => {
 
 const ProductList = () => {
   const { data, isLoading, isError, error } = useProducts()
-  if (!data || isLoading) return <div>... is loading</div>
+  if (!data || isLoading) return <Loader msg="Searching for products" />
   if (isError) return <div>{error.message}</div>
 
   return (

@@ -20,11 +20,13 @@ const UserForm = ({ type }: UserFormProps) => {
     errorMessage: loginErrorMsg,
     mutate: login,
     isError: isLoginError,
+    isPending: isLoginLoading,
   } = useLogin(user)
   const {
     errorMessage: signupErrorMsg,
     mutate: signup,
     isError: isSignupError,
+    isPending: isSignupLoading,
   } = useSignup(user)
   const { username, password } = user
   const isLogin = type === 'login'
@@ -71,6 +73,7 @@ const UserForm = ({ type }: UserFormProps) => {
       />
       <Button
         disabled={!submitCondition}
+        isLoading={isLogin ? isLoginLoading : isSignupLoading}
       >{`${isLogin ? 'Log in' : 'Sign up'}`}</Button>
       {(isLoginError || isSignupError) && (
         <p className={msg}>
