@@ -2,13 +2,16 @@
 import { ProductListProps } from '@/schema/products'
 import { ObservedCard } from '.'
 import { useEffect, useState } from 'react'
+import { MAX_VIEWPORT_PRODUCTS } from '@/constant/products'
 
 const CardList = ({ items }: { items: ProductListProps }) => {
-  const [visibleItemsCount, setVisibleItemsCount] = useState(12)
+  const [visibleItemsCount, setVisibleItemsCount] = useState(
+    MAX_VIEWPORT_PRODUCTS
+  )
 
   useEffect(() => {
     if (items.length) {
-      setVisibleItemsCount(12)
+      setVisibleItemsCount(MAX_VIEWPORT_PRODUCTS)
     }
   }, [items])
   return (
