@@ -3,6 +3,7 @@ import SearchWithButton from './components/SearchWithButton'
 import Main from '@/components/main/Main'
 import Section from '@/components/section/Section'
 import Title from './components/Title'
+import { section } from './page.css'
 
 export const metadata: Metadata = {
   title: 'Product Sharing Helper',
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
 const HomePage = () => {
   return (
     <Main centered>
-      <Section maxWidth={584}>
+      <Section className={section}>
         <Title>Product Search Helper</Title>
         <SearchWithButton />
       </Section>

@@ -1,13 +1,7 @@
 import React, { HTMLAttributes, PropsWithChildren } from 'react'
-import {
-  sectionBase,
-  sectionVariants,
-  maxWidth as MaxWidth,
-} from './Section.css'
-import { assignInlineVars } from '@vanilla-extract/dynamic'
+import { sectionBase, sectionVariants } from './Section.css'
 
 interface SectionProps extends PropsWithChildren, HTMLAttributes<HTMLElement> {
-  maxWidth?: number
   row?: boolean
   className?: string
 }
@@ -15,16 +9,12 @@ interface SectionProps extends PropsWithChildren, HTMLAttributes<HTMLElement> {
 const Section = ({
   children,
   row = false,
-  maxWidth,
   className,
   ...rest
 }: SectionProps) => {
   return (
     <section
       className={`${sectionBase} ${row && sectionVariants.row} ${className}`}
-      style={
-        maxWidth ? assignInlineVars({ [MaxWidth]: `${maxWidth}px` }) : undefined
-      }
       {...rest}
     >
       {children}

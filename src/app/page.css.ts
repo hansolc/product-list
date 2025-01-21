@@ -1,5 +1,9 @@
 import { style } from '@vanilla-extract/css'
 
+export const section = style({
+  maxWidth: '584px',
+})
+
 export const title = style({
   fontSize: '3rem',
   textAlign: 'center',
