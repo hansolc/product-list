@@ -11,8 +11,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Product Sharing Helper',
     description: 'you can search products, products from Dummy Json',
-    url: 'https://ff29-222-232-109-6.ngrok-free.app/',
-    images: 'https://ff29-222-232-109-6.ngrok-free.app/images/test3.jpg',
+    // url: 'https://ff29-222-232-109-6.ngrok-free.app/',
+    // images: 'https://ff29-222-232-109-6.ngrok-free.app/images/test3.jpg',
   },
 }
 

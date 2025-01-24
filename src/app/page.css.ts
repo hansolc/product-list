@@ -8,6 +8,7 @@ export const title = style({
   fontSize: '3rem',
   textAlign: 'center',
   marginTop: 150,
+  marginBottom: 30,
 })
 
 export const input = style({
@@ -19,5 +20,4 @@ export const input = style({
 export const button = style({
   width: '40%',
   alignSelf: 'center',
-  marginTop: '18px',
 })

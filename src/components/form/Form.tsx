@@ -9,7 +9,7 @@ interface FormTitleProps extends HTMLAttributes<HTMLHeadElement> {
 }
 
 interface FormInputProps extends InputProps {
-  label: string
+  label?: string
 }
 
 const Form = ({
@@ -27,8 +27,8 @@ const Form = ({
 const FormInput = ({ label, ...rest }: FormInputProps) => {
   return (
     <div>
-      <label htmlFor={label}>{label}</label>
-      <Input id={label} {...rest} style={{ marginTop: '0.5rem' }} />
+      {label && <label htmlFor={label}>{label}</label>}
+      <Input id={label} {...rest} />
     </div>
   )
 }
