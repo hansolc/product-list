@@ -10,13 +10,16 @@ export const getProducts = async ({
   skip,
 }: GetProductsProps): Promise<ActionResult<ProductsResponse>> => {
   try {
-    const response = await axios.get(`/api/product`, {
-      params: {
-        q,
-        limit,
-        skip,
-      },
-    })
+    const response = await axios.get(
+      `${process.env.SERVER_URL || 'http://localhost:3000'}/api/product`,
+      {
+        params: {
+          q,
+          limit,
+          skip,
+        },
+      }
+    )
     const { success, data } = productsResponseSchema.safeParse(response.data)
 
     if (success) {

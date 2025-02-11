@@ -10,6 +10,7 @@ export interface InputProps
     condition: boolean
     msg: string
   }
+  className?: string
 }
 
 const Input = ({
@@ -17,11 +18,15 @@ const Input = ({
   color = 'default',
   rounded = false,
   isValid,
+  className,
   ...rest
 }: InputProps) => {
   return (
     <>
-      <input className={input({ size, color, rounded })} {...rest} />
+      <input
+        className={`${input({ size, color, rounded })} ${className}`}
+        {...rest}
+      />
       {isValid?.condition && <p className={msg}>{isValid.msg}</p>}
     </>
   )

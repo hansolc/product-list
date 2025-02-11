@@ -42,6 +42,3 @@ next-env.d.ts
 
 # test
 /src/app/test
-
-# public
-/public

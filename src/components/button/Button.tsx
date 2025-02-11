@@ -6,6 +6,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   size?: 'small' | 'medium' | 'large'
   rounded?: boolean
   isLoading?: boolean
+  className?: string
 }
 
 const Button = ({
@@ -14,6 +15,7 @@ const Button = ({
   size = 'medium',
   rounded = false,
   isLoading = false,
+  className = '',
   ...rest
 }: PropsWithChildren<ButtonProps>) => {
   return (
@@ -23,7 +25,7 @@ const Button = ({
         color,
         size,
         rounded,
-      })} ${isLoading ? 'loading' : ''}`}
+      })} ${isLoading ? 'loading' : ''} ${className}`}
     >
       {children}
     </button>

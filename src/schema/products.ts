@@ -21,3 +21,4 @@ export const productsResponseSchema = z.object({
 
 export type ProductsResponse = z.infer<typeof productsResponseSchema>
 export type ProductListProps = ProductsResponse['products']
+export type ProductListItemProps = z.infer<typeof productListItemSchema>
