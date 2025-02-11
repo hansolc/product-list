@@ -28,7 +28,7 @@ const FormInput = ({ label, ...rest }: FormInputProps) => {
   return (
     <div>
       {label && <label htmlFor={label}>{label}</label>}
-      <Input id={label} {...rest} />
+      <Input id={label} {...rest} style={{ marginTop: '0.5rem' }} />
     </div>
   )
 }

@@ -11,7 +11,7 @@ const useLogout = () => {
     try {
       const res = await axios.get('/api/users/logout')
       setUserState(null)
-      router.push('/login')
+      router.push('/')
     } catch (error) {
       printErrorConsole(error)
     }
