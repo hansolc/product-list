@@ -23,7 +23,6 @@ const ProductList = ({ initialData, product }: ProductsProps) => {
       observe(ref.current)
     }
   }, [observe])
-  console.log(data)
 
   return (
     <>

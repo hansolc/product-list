@@ -15,6 +15,10 @@ export function generateMetadata({
   return {
     title: `${params.product} - Product Search`,
     description: `Find the best deals on ${params.product}`,
+    openGraph: {
+      title: `${params.product} - Product Search`,
+      description: `Find the best deals on ${params.product}`,
+    },
   }
 }
 
