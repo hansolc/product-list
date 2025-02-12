@@ -11,7 +11,7 @@ export const getProducts = async ({
 }: GetProductsProps): Promise<ActionResult<ProductsResponse>> => {
   try {
     const response = await axios.get(
-      `${process.env.SERVER_URL || 'http://localhost:3000'}/api/product`,
+      `https://product-list-three-tau.vercel.app/api/product`,
       {
         params: {
           q,
