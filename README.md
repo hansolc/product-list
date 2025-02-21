@@ -6,7 +6,7 @@
 
 ## 사용기술
 
-- Next.js 15
+- Next.js 14
 - axios
 - vanilla-extract/css
 - @tanstack/react-query
@@ -56,31 +56,59 @@ src/
 
 컴포넌트 `GridContainer`을 통해 브라우저 크기마다 다른 개수를 배치하여 반응형 웹으로 구현하도록 구현했습니다.
 
-### 2. tanstackquery을 사용하여 상품 정보 가져오는 과정
+### 2. Next.js Api Routes을 사용해 serverless 환경으로 Login/Registration 기능 구현
 
-**1. ProductList 컴포넌트의 데이터 요청**
+MongoDB Atlas을 통해 DB을 관리하고 Api Routes을 사용해 간단한 Authentication 로직을 구현하였습니다. `mongoose`을 사용해 사용자 정보를 저장하는 데이터 모델, 스키마를 생성하였으며 `<UserInitializer>` 컴포넌트를 통해 새로고침시 쿠키에 저장된 JWT 토큰을 기반으로 사용자 정보를 유지하였습니다.
 
-- ProductList 컴포넌트가 마운트될 때, 내부에서 useProducts 커스텀 훅을 호출하여 상품 정보를 가져옵니다.
-- useProducts 훅은 검색어(q)를 URL에서 추출하고, 페이지네이션을 위해 useProductPaginationContext에서 page 값을 받아 API 요청 파라미터를 구성합니다.
-- 이 구조 덕분에 새로고침해도 URL에 포함된 검색어와 페이지 정보가 유지되어 동일한 상태를 복원할 수 있습니다.
+### 3. SEO 최적화, 성능개선
 
-**2. getProducts 함수로 API 호출**
+Next.js App Router 기반으로 Server Component, Client Component을 구분하여 SSR, SSG, CSR을 분리하여 성능을 개선하였습니다. 간단한 예로, 아래 코드에서 `<Title>`은 SSG로 빌드 과정에서 렌더링 되며, 그 외 `input`, `button` 등의 사용으로 사용자와 상호 작용이 필요한 컴포넌트의 경우 Client Component로 구성하였습니다.
 
-- useProducts 훅 내부에서 getProducts 함수를 호출하여 데이터를 요청합니다.
-- 이 함수는 Next.js API Routes를 통해 내부 서버(/api/product)로 요청을 보냅니다.
+```tsx
+const HomePage = () => {
+  return (
+    <Main centered>
+      <Section maxWidth={584}>
+        <Title>Product Search Helper</Title>
+        <SearchWithButton />
+      </Section>
+    </Main>
+  )
+}
+```
 
-**3. API Routes에서 외부 서버로 데이터 요청**
+SEO 최적화를 위해 SSR을 통해 meta 데이터를 동적으로 설정해 주었습니다. 상품 검색 후 페이지의 일부분입니다. 상품 검색 페이지 또한 검색 엔진에 노출을 의도하여 url을 통해 받아온 값을 meta 데이터에 넣어 주었습니다.
 
-- 내부 서버의 GET 메서드는 외부 서버(https://dummyjson.com/products)로 요청을 전달하며, URL에 포함된 검색어, 페이지네이션 정보(limit, skip)에 따라 적절한 데이터를 가져옵니다.
+```tsx
+path: `/src/app/search/[product]`
 
-**4. 외부 서버로부터 응답 처리**
+interface ProductSearchedPageProps {
+  params: {
+    product: string
+  }
+}
 
-- 외부 서버로부터 데이터를 성공적으로 수신하면, zod 라이브러리를 사용해 데이터의 타입을 검증합니다.
-- 타입 검증에 실패할 경우 에러 메시지를 반환하고, 성공 시 데이터를 useQuery를 통해 React 컴포넌트에서 사용할 수 있게 합니다.
+export function generateMetadata({
+  params,
+}: ProductSearchedPageProps): Metadata {
+  return {
+    title: `${params.product} - Product Search`,
+    description: `Find the best deals on ${params.product}`,
+    openGraph: {
+      title: `${params.product} - Product Search`,
+      description: `Find the best deals on ${params.product}`,
+    },
+  }
+}
+```
 
-## 개선사항 & 추가 기능 구현
+### 4. Infinite Scroll
 
-[velog blog](https://velog.io/@soll/%EB%AA%A8%EB%B0%94%EC%9D%BC-%EC%B9%9C%ED%99%94%EC%A0%81-%ED%99%94%EB%A9%B4-%EC%88%98%EC%A0%95)
+상품 검색 페이지에서 Infinite Scroll을 통해 사용자 경험을 개선하였습니다. `tanstackquery`의 `useInfiniteQuery`을 통해 구현했으며 `Intersection Observer`을 사용한 `useObserver` custom hook을 통해 마지막 item값을 감지하며 Infinite Scroll을 구현하였습니다.
+
+## 개발일지 & 추가 기능 구현
+
+[Blog Velog](https://velog.io/@soll/%EB%AA%A8%EB%B0%94%EC%9D%BC-%EC%B9%9C%ED%99%94%EC%A0%81-%ED%99%94%EB%A9%B4-%EC%88%98%EC%A0%95)
 
 ## External APIs
 

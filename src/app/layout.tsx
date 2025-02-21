@@ -15,10 +15,10 @@ export default function RootLayout({
       <body>
         <ReactQueryProvider>
           <RecoilRootComponent>
-            {/* <UserInitializer> */}
-            <Header />
-            {children}
-            {/* </UserInitializer> */}
+            <UserInitializer>
+              <Header />
+              {children}
+            </UserInitializer>
           </RecoilRootComponent>
         </ReactQueryProvider>
       </body>
