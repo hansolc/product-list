@@ -4,13 +4,16 @@
 
 배포 페이지: https://product-list-three-tau.vercel.app/
 
-## 사용기술
+## 🚀 사용기술
 
-- Next.js 14
-- axios
-- vanilla-extract/css
-- @tanstack/react-query
-- zod
+- **Framework**: Next.js v14 (App Router)
+- **Language**: TypeScript
+- **Styling**: vanilla-extract/css
+- **State & Data Fetching**: @tanstack/react-query, axios
+- **Validation**: Zod
+- **Database**: MongoDB Atlas (with mongoose)
+- **Auth**: JWT + HttpOnly Cookie
+- **CI/CD**: Vercel
 
 ## 아키텍쳐
 
@@ -52,33 +55,19 @@ src/
 
 ## 주요기능
 
-### 1. css Grid을 사용한 반응형 웹
+### 1. 로그인 & 회원가입 (Serverless + MongoDB)
 
-컴포넌트 `GridContainer`을 통해 브라우저 크기마다 다른 개수를 배치하여 반응형 웹으로 구현하도록 구현했습니다.
+- **Next.js API Routes + mongoose** 조합으로 간단한 인증 API 구현  
+- JWT를 생성해 **HttpOnly Cookie**에 저장, 보안 강화  
+- `<UserInitializer>` 컴포넌트를 통해 새로고침 시 사용자 인증 상태 유지  
 
-### 2. Next.js Api Routes을 사용해 serverless 환경으로 Login/Registration 기능 구현
+### 2. SEO & 성능 최적화
 
-MongoDB Atlas을 통해 DB을 관리하고 Api Routes을 사용해 간단한 Authentication 로직을 구현하였습니다. `mongoose`을 사용해 사용자 정보를 저장하는 데이터 모델, 스키마를 생성하였으며 `<UserInitializer>` 컴포넌트를 통해 새로고침시 쿠키에 저장된 JWT 토큰을 기반으로 사용자 정보를 유지하였습니다.
+- **서버/클라이언트 컴포넌트 분리**  
+  - 서버 컴포넌트에서 초기 상품 데이터를 pre-fetch
+  - 클라이언트에서 상호작용 처리 (검색, 버튼 등)
 
-### 3. SEO 최적화, 성능개선
-
-Next.js App Router 기반으로 Server Component, Client Component을 구분하여 SSR, SSG, CSR을 분리하여 성능을 개선하였습니다. 간단한 예로, 아래 코드에서 `<Title>`은 SSG로 빌드 과정에서 렌더링 되며, 그 외 `input`, `button` 등의 사용으로 사용자와 상호 작용이 필요한 컴포넌트의 경우 Client Component로 구성하였습니다.
-
-```tsx
-const HomePage = () => {
-  return (
-    <Main centered>
-      <Section maxWidth={584}>
-        <Title>Product Search Helper</Title>
-        <SearchWithButton />
-      </Section>
-    </Main>
-  )
-}
-```
-
-SEO 최적화를 위해 SSR을 통해 meta 데이터를 동적으로 설정해 주었습니다. 상품 검색 후 페이지의 일부분입니다. 상품 검색 페이지 또한 검색 엔진에 노출을 의도하여 url을 통해 받아온 값을 meta 데이터에 넣어 주었습니다.
-
+- **SSR 기반 meta 데이터 설정**으로 검색 노출 강화  
 ```tsx
 path: `/src/app/search/[product]`
 
@@ -102,9 +91,10 @@ export function generateMetadata({
 }
 ```
 
-### 4. Infinite Scroll
-
-상품 검색 페이지에서 Infinite Scroll을 통해 사용자 경험을 개선하였습니다. `tanstackquery`의 `useInfiniteQuery`을 통해 구현했으며 `Intersection Observer`을 사용한 `useObserver` custom hook을 통해 마지막 item값을 감지하며 Infinite Scroll을 구현하였습니다.
+### 3. Infinite Scroll
+- 상품 검색 결과 페이지에 무한 스크롤 기능 적용
+- useInfiniteQuery + Intersection Observer를 결합한 useObserver 훅 사용
+- 마지막 아이템이 뷰포트에 들어오면 다음 페이지 자동 요청
 
 ## 개발일지 & 추가 기능 구현
 
